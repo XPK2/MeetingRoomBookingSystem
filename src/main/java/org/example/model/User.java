@@ -4,21 +4,21 @@ public class User {
     private int id;
     private String email;
     private String fullName;
-    private String role;
+    private UserRole role;
 
-    public User(int id, String email, String fullName, String role) {
+    public User(int id, String email, String fullName, UserRole userRole) {
+        if (email == null) {
+            throw new IllegalArgumentException("Email must not be null");
+        }
+
         this.id = id;
         this.email = email;
         this.fullName = fullName;
-        this.role = role;
+        this.role = userRole;
     }
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getEmail() {
@@ -26,6 +26,10 @@ public class User {
     }
 
     public void setEmail(String email) {
+        if (email == null) {
+            throw new IllegalArgumentException("Email must not be null");
+        }
+
         this.email = email;
     }
 
@@ -37,11 +41,21 @@ public class User {
         this.fullName = fullName;
     }
 
-    public String getRole() {
+    public UserRole getRole() {
         return role;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRole(UserRole userRole) {
+        this.role = userRole;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", role=" + role +
+                '}';
     }
 }

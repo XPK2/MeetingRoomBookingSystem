@@ -7,6 +7,10 @@ public class Room {
     private boolean active;
 
     public Room(int id, String name, int capacity, boolean active) {
+        if (capacity <= 0) {
+            throw new IllegalArgumentException("Room capacity must be be more than 0");
+        }
+
         this.id = id;
         this.name = name;
         this.capacity = capacity;
@@ -15,10 +19,6 @@ public class Room {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -34,6 +34,10 @@ public class Room {
     }
 
     public void setCapacity(int capacity) {
+        if (capacity <= 0) {
+            throw new IllegalArgumentException("Room capacity must be be more than 0");
+        }
+
         this.capacity = capacity;
     }
 
@@ -41,7 +45,21 @@ public class Room {
         return active;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void activate() {
+        this.active = true;
+    }
+
+    public void deactivate() {
+        this.active = false;
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", capacity=" + capacity +
+                ", active=" + active +
+                '}';
     }
 }
