@@ -1,6 +1,9 @@
 package org.example;
 
 import org.example.model.*;
+import org.example.policy.permission.AdminPermissionPolicy;
+import org.example.policy.permission.PermissionPolicy;
+import org.example.policy.permission.PermissionPolicyFactory;
 
 import java.time.LocalDateTime;
 
@@ -63,5 +66,30 @@ public class Main {
 
 //        Booking booking4 = new Booking(4, 1, 1, "Hop noi bo 4", new TimeRange(LocalDateTime.of(2026, 7, 15, 10, 30), LocalDateTime.of(2026, 7, 15, 11, 30)), BookingStatus.CANCELLED);
 //        booking4.setStatus(BookingStatus.APPROVED);
+
+        Booking booking1 = new Booking(1, 1, 1, "Hop noi bo 1", new TimeRange(LocalDateTime.of(2026, 7, 15, 9, 30), LocalDateTime.of(2026, 7, 15, 11, 30)), BookingStatus.APPROVED);
+        Booking booking2 = new Booking(2, 1, 1, "Hop noi bo 2", new TimeRange(LocalDateTime.of(2026, 7, 15, 10, 30), LocalDateTime.of(2026, 7, 15, 11, 30)), BookingStatus.APPROVED);
+
+        User user1 = new User(1, "a@gmail.com", "Nguyen Van A", UserRole.ADMIN);
+        User user2 = new User(2, "b@gmail.com", "Nguyen Van B", UserRole.USER);
+
+        PermissionPolicyFactory policyFactory = new PermissionPolicyFactory();
+        PermissionPolicy permissionPolicy = policyFactory.getPolicy(user1);
+        
+        if (permissionPolicy.canCancelBooking(user1, booking1)) {
+            System.out.println("Cancel booking 1");
+        }
+        else {
+            System.out.println("Cannot cancel booking 1");
+        }
+
+        permissionPolicy = policyFactory.getPolicy(user2);
+
+        if (permissionPolicy.canCancelBooking(user2, booking2)) {
+            System.out.println("Cancel booking 2");
+        }
+        else {
+            System.out.println("Cannot cancel booking 2");
+        }
     }
 }
