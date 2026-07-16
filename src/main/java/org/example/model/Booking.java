@@ -4,16 +4,16 @@ import java.time.LocalDateTime;
 
 public class Booking {
     private int id;
-    private int userId;
-    private int roomId;
+    private User user;
+    private Room room;
     private String title;
     private TimeRange timeRange;
     private BookingStatus status;
 
-    public Booking(int id, int userId, int roomId, String title, TimeRange timeRange, BookingStatus bookingStatus) {
+    public Booking(int id, User user, Room room, String title, TimeRange timeRange, BookingStatus bookingStatus) {
         this.id = id;
-        this.userId = userId;
-        this.roomId = roomId;
+        this.user = user;
+        this.room = room;
         this.title = title;
         this.timeRange = timeRange;
         this.status = bookingStatus;
@@ -23,12 +23,12 @@ public class Booking {
         return id;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public int getRoomId() {
-        return roomId;
+    public Room getRoom() {
+        return room;
     }
 
     public String getTitle() {
@@ -58,8 +58,8 @@ public class Booking {
     public String toString() {
         return "Booking{" +
                 "id=" + id +
-                ", userId=" + userId +
-                ", roomId=" + roomId +
+                ", user=" + user +
+                ", room=" + room +
                 ", title='" + title + '\'' +
                 ", timeRange=" + timeRange +
                 ", status=" + status +

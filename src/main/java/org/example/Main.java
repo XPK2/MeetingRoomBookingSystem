@@ -1,6 +1,8 @@
 package org.example;
 
 import org.example.model.*;
+import org.example.policy.booking.BookingTimePolicy;
+import org.example.policy.booking.DefaultBookingTimePolicy;
 import org.example.policy.permission.AdminPermissionPolicy;
 import org.example.policy.permission.PermissionPolicy;
 import org.example.policy.permission.PermissionPolicyFactory;
@@ -9,20 +11,22 @@ import java.time.LocalDateTime;
 
 public class Main {
     public static void main(String[] args) {
-//        User user1 = new User(1, "a@gmail.com", "Nguyen Van A", UserRole.ADMIN);
-//        User user2 = new User(2, "b@gmail.com", "Nguyen Van B", UserRole.USER);
-//        User user3 = new User(3, "c@gmail.com", "Nguyen Van C", UserRole.USER);
-//
-//        Room room1 = new Room(1, "Room 1", 5, true);
-//        Room room2 = new Room(2, "Room 2", 10, false);
-//        Room room3 = new Room(3, "Room 3", 15, true);
-//
-//        Booking booking1 = new Booking(1, 1, 1, "Hop noi bo 1", new TimeRange(LocalDateTime.of(2026, 7, 15, 10, 30), LocalDateTime.of(2026, 7, 15, 11, 30)), BookingStatus.APPROVED);
-//        Booking booking2 = new Booking(1, 2, 2, "Hop noi bo 2", new TimeRange(LocalDateTime.of(2026, 7, 15, 15, 0), LocalDateTime.of(2026, 7, 15, 16, 30)), BookingStatus.PENDING);
-//        Booking booking3 = new Booking(1, 3, 3, "Hop noi bo 3", new TimeRange(LocalDateTime.of(2026, 7, 15, 8, 0), LocalDateTime.of(2026, 7, 15, 9, 0)), BookingStatus.APPROVED);
-//        Booking booking4 = new Booking(1, 1, 1, "Hop noi bo 4", new TimeRange(LocalDateTime.of(2026, 7, 15, 10, 30), LocalDateTime.of(2026, 7, 15, 11, 30)), BookingStatus.CANCELLED);
-//        Booking booking5 = new Booking(1, 2, 2, "Hop noi bo 5", new TimeRange(LocalDateTime.of(2026, 7, 15, 10, 30), LocalDateTime.of(2026, 7, 15, 11, 30)), BookingStatus.CANCELLED);
-//
+        User user1 = new User(1, "a@gmail.com", "Nguyen Van A", UserRole.ADMIN);
+        User user2 = new User(2, "b@gmail.com", "Nguyen Van B", UserRole.USER);
+        User user3 = new User(3, "c@gmail.com", "Nguyen Van C", UserRole.USER);
+
+        Room room1 = new Room(1, "Room 1", 5, true);
+        Room room2 = new Room(2, "Room 2", 10, false);
+        Room room3 = new Room(3, "Room 3", 15, true);
+
+        Booking booking1 = new Booking(1, user1, room1, "Hop noi bo 1", new TimeRange(LocalDateTime.of(2026, 7, 16, 16, 30), LocalDateTime.of(2026, 7, 16, 17, 30)), BookingStatus.APPROVED);
+        Booking booking2 = new Booking(2, user2, room2, "Hop noi bo 2", new TimeRange(LocalDateTime.of(2026, 7, 15, 15, 0), LocalDateTime.of(2026, 7, 15, 16, 30)), BookingStatus.PENDING);
+        Booking booking3 = new Booking(3, user3, room3, "Hop noi bo 3", new TimeRange(LocalDateTime.of(2026, 7, 15, 8, 0), LocalDateTime.of(2026, 7, 15, 9, 0)), BookingStatus.APPROVED);
+        Booking booking4 = new Booking(4, user1, room1, "Hop noi bo 4", new TimeRange(LocalDateTime.of(2026, 7, 15, 10, 30), LocalDateTime.of(2026, 7, 15, 11, 30)), BookingStatus.CANCELLED);
+        Booking booking5 = new Booking(5, user2, room2, "Hop noi bo 5", new TimeRange(LocalDateTime.of(2026, 7, 15, 10, 30), LocalDateTime.of(2026, 7, 15, 11, 30)), BookingStatus.CANCELLED);
+
+
+        // Day 1
 //        System.out.println(user1);
 //        System.out.println(user2);
 //        System.out.println(user3);
@@ -36,6 +40,9 @@ public class Main {
 //        System.out.println(booking3);
 //        System.out.println(booking4);
 //        System.out.println(booking5);
+
+
+        // Day 2
 
 //        User user1 = new User(1, "a@gmail.com", "Nguyen Van A", UserRole.ADMIN);
 //        System.out.println("Create user 1 successfully will all valid inputs" + user1);
@@ -67,11 +74,6 @@ public class Main {
 //        Booking booking4 = new Booking(4, 1, 1, "Hop noi bo 4", new TimeRange(LocalDateTime.of(2026, 7, 15, 10, 30), LocalDateTime.of(2026, 7, 15, 11, 30)), BookingStatus.CANCELLED);
 //        booking4.setStatus(BookingStatus.APPROVED);
 
-        Booking booking1 = new Booking(1, 1, 1, "Hop noi bo 1", new TimeRange(LocalDateTime.of(2026, 7, 15, 9, 30), LocalDateTime.of(2026, 7, 15, 11, 30)), BookingStatus.APPROVED);
-        Booking booking2 = new Booking(2, 1, 1, "Hop noi bo 2", new TimeRange(LocalDateTime.of(2026, 7, 15, 10, 30), LocalDateTime.of(2026, 7, 15, 11, 30)), BookingStatus.APPROVED);
-
-        User user1 = new User(1, "a@gmail.com", "Nguyen Van A", UserRole.ADMIN);
-        User user2 = new User(2, "b@gmail.com", "Nguyen Van B", UserRole.USER);
 
         PermissionPolicyFactory policyFactory = new PermissionPolicyFactory();
         PermissionPolicy permissionPolicy = policyFactory.getPolicy(user1);
@@ -91,5 +93,10 @@ public class Main {
         else {
             System.out.println("Cannot cancel booking 2");
         }
+
+        BookingTimePolicy bookingTimePolicy = new DefaultBookingTimePolicy();
+
+        bookingTimePolicy.validate(user1, booking1);
+        System.out.println("Booking time policy apply successfully");
     }
 }

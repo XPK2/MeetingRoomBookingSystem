@@ -50,10 +50,10 @@ public class DefaultBookingTimePolicy implements BookingTimePolicy{
             throw new RuntimeException("Booking period must be in working day");
         }
 
-        Duration advanceBookingDuration = Duration.between(booking.getStartTime(), LocalDateTime.now());
+        Duration advanceBookingDuration = Duration.between(LocalDateTime.now(), booking.getStartTime());
 
-        if(advanceBookingDuration.compareTo(Duration.ofMinutes(MINIMUM_ADVANCE_BOOKING_TIME)) < 0 ||
-                advanceBookingDuration.compareTo(Duration.ofDays(MAXIMUM_ADVANCE_BOOKING_TIME)) > 0) {
+        if(advanceBookingDuration.toMinutes() < MINIMUM_ADVANCE_BOOKING_TIME ||
+                advanceBookingDuration.toDays() > MAXIMUM_ADVANCE_BOOKING_TIME) {
             throw new RuntimeException("Invalid advance booking duration");
         }
 

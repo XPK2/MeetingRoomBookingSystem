@@ -16,6 +16,6 @@ public class UserPermissionPolicy implements PermissionPolicy{
 
     @Override
     public boolean canCancelBooking(User user, Booking booking) {
-        return booking.getUserId() == user.getId();
+        return booking.getUser().equals(user);
     }
 }
