@@ -1,12 +1,14 @@
-package org.example.model;
+package org.example.domain.model;
+
+import java.util.UUID;
 
 public class Room {
-    private int id;
+    private UUID id;
     private String name;
     private int capacity;
     private boolean active;
 
-    public Room(int id, String name, int capacity, boolean active) {
+    public Room(UUID id, String name, int capacity, boolean active) {
         if (capacity <= 0) {
             throw new IllegalArgumentException("Room capacity must be be more than 0");
         }
@@ -17,7 +19,7 @@ public class Room {
         this.active = active;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 

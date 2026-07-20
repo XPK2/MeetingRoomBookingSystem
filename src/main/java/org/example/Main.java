@@ -1,29 +1,29 @@
 package org.example;
 
-import org.example.model.*;
-import org.example.policy.booking.BookingTimePolicy;
-import org.example.policy.booking.DefaultBookingTimePolicy;
-import org.example.policy.permission.AdminPermissionPolicy;
-import org.example.policy.permission.PermissionPolicy;
-import org.example.policy.permission.PermissionPolicyFactory;
+import org.example.domain.model.*;
+import org.example.domain.policy.booking.BookingTimePolicy;
+import org.example.domain.policy.booking.DefaultBookingTimePolicy;
+import org.example.domain.policy.permission.PermissionPolicy;
+import org.example.domain.policy.permission.PermissionPolicyFactory;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class Main {
     public static void main(String[] args) {
-        User user1 = new User(1, "a@gmail.com", "Nguyen Van A", UserRole.ADMIN);
-        User user2 = new User(2, "b@gmail.com", "Nguyen Van B", UserRole.USER);
-        User user3 = new User(3, "c@gmail.com", "Nguyen Van C", UserRole.USER);
+        User user1 = new User(UUID.randomUUID(), "a@gmail.com", "Nguyen Van A", UserRole.ADMIN);
+        User user2 = new User(UUID.randomUUID(), "b@gmail.com", "Nguyen Van B", UserRole.USER);
+        User user3 = new User(UUID.randomUUID(), "c@gmail.com", "Nguyen Van C", UserRole.USER);
 
-        Room room1 = new Room(1, "Room 1", 5, true);
-        Room room2 = new Room(2, "Room 2", 10, false);
-        Room room3 = new Room(3, "Room 3", 15, true);
+        Room room1 = new Room(UUID.randomUUID(), "Room 1", 5, true);
+        Room room2 = new Room(UUID.randomUUID(), "Room 2", 10, false);
+        Room room3 = new Room(UUID.randomUUID(), "Room 3", 15, true);
 
-        Booking booking1 = new Booking(1, user1, room1, "Hop noi bo 1", new TimeRange(LocalDateTime.of(2026, 7, 16, 16, 30), LocalDateTime.of(2026, 7, 16, 17, 30)), BookingStatus.APPROVED);
-        Booking booking2 = new Booking(2, user2, room2, "Hop noi bo 2", new TimeRange(LocalDateTime.of(2026, 7, 15, 15, 0), LocalDateTime.of(2026, 7, 15, 16, 30)), BookingStatus.PENDING);
-        Booking booking3 = new Booking(3, user3, room3, "Hop noi bo 3", new TimeRange(LocalDateTime.of(2026, 7, 15, 8, 0), LocalDateTime.of(2026, 7, 15, 9, 0)), BookingStatus.APPROVED);
-        Booking booking4 = new Booking(4, user1, room1, "Hop noi bo 4", new TimeRange(LocalDateTime.of(2026, 7, 15, 10, 30), LocalDateTime.of(2026, 7, 15, 11, 30)), BookingStatus.CANCELLED);
-        Booking booking5 = new Booking(5, user2, room2, "Hop noi bo 5", new TimeRange(LocalDateTime.of(2026, 7, 15, 10, 30), LocalDateTime.of(2026, 7, 15, 11, 30)), BookingStatus.CANCELLED);
+        Booking booking1 = new Booking(UUID.randomUUID(), user1, room1, "Hop noi bo 1", new TimeRange(LocalDateTime.of(2026, 7, 16, 16, 30), LocalDateTime.of(2026, 7, 16, 17, 30)), BookingStatus.APPROVED);
+        Booking booking2 = new Booking(UUID.randomUUID(), user2, room2, "Hop noi bo 2", new TimeRange(LocalDateTime.of(2026, 7, 15, 15, 0), LocalDateTime.of(2026, 7, 15, 16, 30)), BookingStatus.PENDING);
+        Booking booking3 = new Booking(UUID.randomUUID(), user3, room3, "Hop noi bo 3", new TimeRange(LocalDateTime.of(2026, 7, 15, 8, 0), LocalDateTime.of(2026, 7, 15, 9, 0)), BookingStatus.APPROVED);
+        Booking booking4 = new Booking(UUID.randomUUID(), user1, room1, "Hop noi bo 4", new TimeRange(LocalDateTime.of(2026, 7, 15, 10, 30), LocalDateTime.of(2026, 7, 15, 11, 30)), BookingStatus.CANCELLED);
+        Booking booking5 = new Booking(UUID.randomUUID(), user2, room2, "Hop noi bo 5", new TimeRange(LocalDateTime.of(2026, 7, 15, 10, 30), LocalDateTime.of(2026, 7, 15, 11, 30)), BookingStatus.CANCELLED);
 
 
         // Day 1

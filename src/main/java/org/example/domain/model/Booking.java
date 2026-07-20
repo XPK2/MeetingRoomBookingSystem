@@ -1,16 +1,17 @@
-package org.example.model;
+package org.example.domain.model;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class Booking {
-    private int id;
+    private UUID id;
     private User user;
     private Room room;
     private String title;
     private TimeRange timeRange;
     private BookingStatus status;
 
-    public Booking(int id, User user, Room room, String title, TimeRange timeRange, BookingStatus bookingStatus) {
+    public Booking(UUID id, User user, Room room, String title, TimeRange timeRange, BookingStatus bookingStatus) {
         this.id = id;
         this.user = user;
         this.room = room;
@@ -19,7 +20,7 @@ public class Booking {
         this.status = bookingStatus;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 

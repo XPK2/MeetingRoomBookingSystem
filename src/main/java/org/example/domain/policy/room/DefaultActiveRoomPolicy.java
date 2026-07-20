@@ -1,6 +1,6 @@
-package org.example.policy.room;
+package org.example.domain.policy.room;
 
-import org.example.model.Room;
+import org.example.domain.model.Room;
 
 public class DefaultActiveRoomPolicy implements ActiveRoomPolicy{
     @Override

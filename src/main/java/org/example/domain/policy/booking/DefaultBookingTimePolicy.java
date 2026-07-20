@@ -1,7 +1,7 @@
-package org.example.policy.booking;
+package org.example.domain.policy.booking;
 
-import org.example.model.Booking;
-import org.example.model.User;
+import org.example.domain.model.Booking;
+import org.example.domain.model.User;
 
 import java.time.DayOfWeek;
 import java.time.Duration;

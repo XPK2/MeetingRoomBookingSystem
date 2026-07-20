@@ -1,6 +1,6 @@
-package org.example.policy.permission;
+package org.example.domain.policy.permission;
 
-import org.example.model.User;
+import org.example.domain.model.User;
 
 public class PermissionPolicyFactory {
     public PermissionPolicy getPolicy(User user) {

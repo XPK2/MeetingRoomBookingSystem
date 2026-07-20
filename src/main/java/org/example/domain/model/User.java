@@ -1,12 +1,14 @@
-package org.example.model;
+package org.example.domain.model;
+
+import java.util.UUID;
 
 public class User {
-    private int id;
+    private UUID id;
     private String email;
     private String fullName;
     private UserRole role;
 
-    public User(int id, String email, String fullName, UserRole userRole) {
+    public User(UUID id, String email, String fullName, UserRole userRole) {
         if (email == null) {
             throw new IllegalArgumentException("Email must not be null");
         }
@@ -17,7 +19,7 @@ public class User {
         this.role = userRole;
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 

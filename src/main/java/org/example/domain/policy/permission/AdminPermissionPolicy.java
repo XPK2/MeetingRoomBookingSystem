@@ -1,7 +1,7 @@
-package org.example.policy.permission;
+package org.example.domain.policy.permission;
 
-import org.example.model.Booking;
-import org.example.model.User;
+import org.example.domain.model.Booking;
+import org.example.domain.model.User;
 
 public class AdminPermissionPolicy implements PermissionPolicy {
 
