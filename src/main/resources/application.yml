@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: core
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/meeting_room}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+  jpa:
+    hibernate:
+      # ponytail: 'update' is fine for local/dev. Use Flyway/Liquibase in prod.
+      ddl-auto: update
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
